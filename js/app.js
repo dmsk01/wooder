@@ -317,42 +317,43 @@ swiper.on("slideChange", function () {
     counter.innerHTML = counterNumber;
   }
 });
-// $(document).ready(function () {
-//   $(".slider-1").slick({
-//     arrows: false,
-//     dots: true,
-//     vertical: true,
-//     autoplay: true,
-//     autoplaySpeed: 5500,
-//   });
-// });
-// $(".slider-1").on("afterChange", function (event, slick, currentSlide) {
-//   $(".slider-1__counter").text("0" + (currentSlide + 1));
-// });
 
-// $(window).resize(function () {
-//   $(".slider-1").slick("setPosition");
-// });
+let videos = document.querySelectorAll(".video-item");
 
-// VIDEO //
+if (videos) {
+  for (let video = 0; video < videos.length; video++) {
+    let element = videos[video];
+    let videoTag = element.getElementsByTagName("video")[0];
+    let poster = videoTag.getAttribute("poster");
+    console.log(poster);
+    element.addEventListener("click", () => {
+      if (!element.classList.contains("_active")) {
+        hideShowPlayButton(element);
+        playVideo(element, videoTag);
+      } else if (element.classList.contains("_active")) {
+        hideShowPlayButton(element);
+        pauseVideo(element, videoTag);
+        videoTag.setAttribute("poster", `${poster}`);
+      }
+    });
+  }
+}
 
-// $('.hard__btn').click(function() {
-// 	$(this).addClass('hard__btn-lock');
-// 	$(".hard__btn-close").addClass('hard__btn-close-active');
-// 	$('.hard__video-block').addClass('hard__video-play');
-// 	$('.hard__video-block').addClass('hard__video-play-opacity');
-// 	$('.hard__text').css('color', '#cfcfcf');
-// });
+function hideShowPlayButton(element) {
+  if (!element.classList.contains("_active")) {
+    element.classList.add("_active");
+  } else if (element.classList.contains("_active")) {
+    element.classList.remove("_active");
+  }
+}
 
-// $('.hard__btn-close').click(function() {
-// 	$(".hard__btn").removeClass('hard__btn-lock');
-// 	$(".hard__btn-close").removeClass('hard__btn-close-active');
-// 	$('.hard__video-block').removeClass('hard__video-play-opacity');
-// 	setTimeout(function() {
-// 		$('.hard__video-block').removeClass('hard__video-play');
-// 	}, 780);
-// 	$('.hard__text').css('color', '#fff');
-// });
+function playVideo(element, videoTag) {
+  videoTag.play();
+}
+
+function pauseVideo(element, videoTag) {
+  videoTag.pause();
+}
 ;
 var ua = window.navigator.userAgent;
 var msie = ua.indexOf("MSIE ");
