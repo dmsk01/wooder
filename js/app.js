@@ -178,11 +178,11 @@ var mySwiper = new Swiper(".swiper-container", {
     clickable: true,
   },
   loop: true,
-  // autoplay: {
-  //   delay: 3000,
-  //   stopOnLastSlide: false,
-  //   disableOnInteraction: false,
-  // },
+  autoplay: {
+    delay: 3000,
+    stopOnLastSlide: false,
+    disableOnInteraction: false,
+  },
   init: false,
 });
 
